@@ -148,6 +148,22 @@ def main():
         bad_order["sections"][1]["order"] = 3
         negative_case(skill, base / "bad-order", bad_order, "section order mutation", "E_SECTION_ORDER")
 
+        bad_profile_ref = copy.deepcopy(portrait)
+        bad_profile_ref["design_system"]["profile_ref"] = "global:TechCalm@1"
+        negative_case(skill, base / "bad-profile-ref", bad_profile_ref, "profile ref format mutation", "E_STYLE_PROFILE")
+
+        missing_profile = copy.deepcopy(portrait)
+        missing_profile["design_system"].update({
+            "preset": "no_such_style",
+            "preset_version": "1.0.0",
+            "profile_ref": "global:no_such_style@1.0.0",
+        })
+        negative_case(skill, base / "missing-profile", missing_profile, "unknown profile", "E_STYLE_NOT_FOUND")
+
+        mismatched_preset = copy.deepcopy(portrait)
+        mismatched_preset["design_system"]["preset"] = "paper_editorial"
+        negative_case(skill, base / "mismatched-preset", mismatched_preset, "preset mismatch", "E_STYLE_VERSION")
+
         guarded_root = base / "output-guard"
         guarded_root.mkdir(parents=True)
         guarded_spec = write_spec(guarded_root, copy.deepcopy(template))

@@ -41,6 +41,15 @@ SECTION_REQUIRED = (
     "items", "visual", "evidence_refs", "emphasis",
 )
 
+PROFILE_REF_PATTERN = re.compile(r"^global:([a-z][a-z0-9_]*)@(\d+\.\d+\.\d+)$")
+HEX_COLOR_PATTERN = re.compile(r"^#[0-9A-Fa-f]{6}$")
+
+# Palette roles every profile must define. Values are not compared against any
+# specific colour: a profile is valid when it declares all roles as #RRGGBB.
+REQUIRED_PALETTE_ROLES = (
+    "background", "background_secondary", "surface", "text", "keyword", "highlight",
+)
+
 
 def add(errors, code, message):
     errors.append(f"{code}: {message}")
@@ -69,12 +78,17 @@ def safe_relative_path(raw):
     return ".." not in Path(raw).parts
 
 
-def load_style(skill_root, errors):
-    global_path = Path.home() / ".agents" / "visual-styles" / "ai-agents-channel" / "tech-calm.yaml"
-    fallback = skill_root / "assets" / "tech-calm.yaml"
+def style_filename(style_id):
+    return style_id.replace("_", "-") + ".yaml"
+
+
+def load_style(skill_root, style_id, errors):
+    filename = style_filename(style_id)
+    global_path = Path.home() / ".agents" / "visual-styles" / filename
+    fallback = skill_root / "assets" / filename
     style_path = global_path if global_path.is_file() else fallback
     if not style_path.is_file():
-        add(errors, "E_STYLE_NOT_FOUND", "global and bundled tech_calm profiles are missing")
+        add(errors, "E_STYLE_NOT_FOUND", f"no global or bundled profile named {filename}")
         return None, None
     try:
         return yaml.safe_load(style_path.read_text(encoding="utf-8")), style_path
@@ -136,28 +150,31 @@ def main():
     for key in ("preset", "preset_version", "profile_ref", "golden_sample", "overrides"):
         require(design, key, "design_system", errors)
     profile_ref = design.get("profile_ref")
-    if profile_ref == "global:tech_calm@1.0.0":
-        if design.get("preset") != "tech_calm" or str(design.get("preset_version")) != "1.0.0":
-            add(errors, "E_STYLE_VERSION", "tech_calm must use preset version 1.0.0")
-        style_data, style_path = load_style(Path(__file__).resolve().parents[1], errors)
-        if isinstance(style_data, dict):
-            style = style_data.get("style") or {}
-            palette = style_data.get("palette") or {}
-            if style.get("id") != "tech_calm" or str(style.get("version")) != "1.0.0":
-                add(errors, "E_STYLE_VERSION", f"resolved profile has wrong identity: {style_path}")
-            expected = {
-                "background": "#050505", "background_secondary": "#0B0B0B",
-                "surface": "#202020", "text": "#F5F7FA",
-                "keyword": "#FF6A00", "highlight": "#FFD400",
-            }
-            for key, value in expected.items():
-                if str(palette.get(key, "")).upper() != value:
-                    add(errors, "E_STYLE_PALETTE", f"tech_calm palette.{key} must be {value}")
-    elif profile_ref == "explicit":
+    profile_match = PROFILE_REF_PATTERN.match(profile_ref) if isinstance(profile_ref, str) else None
+    if profile_ref == "explicit":
         if not isinstance(design.get("overrides"), dict) or not design.get("overrides"):
             add(errors, "E_STYLE_OVERRIDE", "explicit profile_ref requires non-empty overrides")
+    elif profile_match:
+        style_id, style_version = profile_match.groups()
+        if design.get("preset") != style_id or str(design.get("preset_version")) != style_version:
+            add(errors, "E_STYLE_VERSION", f"design_system.preset and preset_version must match {profile_ref}")
+        style_data, style_path = load_style(Path(__file__).resolve().parents[1], style_id, errors)
+        if isinstance(style_data, dict):
+            style = style_data.get("style") or {}
+            palette = style_data.get("palette")
+            if style.get("id") != style_id or str(style.get("version")) != style_version:
+                add(errors, "E_STYLE_VERSION", f"resolved profile identity does not match {profile_ref}: {style_path}")
+            if not isinstance(palette, dict):
+                add(errors, "E_STYLE_PALETTE", f"profile {style_id} declares no palette mapping")
+            else:
+                for role in REQUIRED_PALETTE_ROLES:
+                    value = palette.get(role)
+                    if value is None:
+                        add(errors, "E_STYLE_PALETTE", f"profile {style_id} is missing palette role {role}")
+                    elif not HEX_COLOR_PATTERN.match(str(value)):
+                        add(errors, "E_STYLE_PALETTE", f"profile {style_id} palette.{role} must be a #RRGGBB value")
     else:
-        add(errors, "E_STYLE_PROFILE", "profile_ref must be global:tech_calm@1.0.0 or explicit")
+        add(errors, "E_STYLE_PROFILE", "profile_ref must be explicit or global:<style_id>@<major.minor.patch>")
     golden = design.get("golden_sample")
     if safe_relative_path(golden):
         project_candidate = path.parent / golden

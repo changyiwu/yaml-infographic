@@ -17,10 +17,12 @@ Create one complete information graphic from a validated YAML contract. Keep the
 
 ## Global Style
 
-Resolve `global:tech_calm@1.0.0` in this order:
+A `global:<style_id>@<version>` reference resolves to `<style-id>.yaml` in this order:
 
-1. `%USERPROFILE%\.agents\visual-styles\ai-agents-channel\tech-calm.yaml`
-2. `assets/tech-calm.yaml` bundled with this skill
+1. `%USERPROFILE%\.agents\visual-styles\<style-id>.yaml`
+2. `assets/<style-id>.yaml` bundled with this skill
+
+The default reference is `global:tech_calm@1.0.0`, resolving to `tech-calm.yaml`. Any profile declaring a matching `style.id`, `style.version`, and a complete `palette` is equally valid.
 
 Use `assets/channel-style-tech-calm.png` as the bundled golden-sample fallback. Preserve near-black surfaces, ice-white text, orange keywords and signal lines, and yellow only for the single highest-priority emphasis. Explicit user or project styles override the default profile.
 

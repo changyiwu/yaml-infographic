@@ -26,7 +26,19 @@ Every section requires `id`, `order`, `role`, `layout_slot`, `core_point`, `visi
 
 ## Style profile
 
-Use `profile_ref: global:tech_calm@1.0.0`. Resolve it from the shared user profile first and use the bundled asset only as a fallback. Use `profile_ref: explicit` plus non-empty `overrides` when the user requests another style.
+`profile_ref` accepts two forms:
+
+- `global:<style_id>@<major.minor.patch>` — a named, versioned profile. `style_id` is lowercase with underscores. `design_system.preset` and `preset_version` must repeat the same id and version.
+- `explicit` — an inline style, which requires non-empty `overrides`.
+
+A `global:` reference resolves to `<style_id>.yaml` with underscores turned into hyphens, searched in this order:
+
+1. `~/.agents/visual-styles/<file>.yaml`
+2. `assets/<file>.yaml` bundled with this skill
+
+The resolved profile must declare `style.id` and `style.version` matching the reference, plus a `palette` defining every required role — `background`, `background_secondary`, `surface`, `text`, `keyword`, `highlight` — each as a `#RRGGBB` value. **Validation checks structure, not specific colours**, so any palette may be used as long as every role is present and well-formed.
+
+The bundled `tech_calm` profile is one such profile, not a hard-coded requirement.
 
 ## Output contract
 

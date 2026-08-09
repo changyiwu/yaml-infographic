@@ -1,11 +1,15 @@
 #!/usr/bin/env python3
 import argparse
 from pathlib import Path
+import re
 
 try:
     import yaml
 except ImportError:
     raise SystemExit("PyYAML is required: python -m pip install PyYAML")
+
+
+PROFILE_REF_PATTERN = re.compile(r"^global:([a-z][a-z0-9_]*)@(\d+\.\d+\.\d+)$")
 
 
 def flatten_text(value):
@@ -25,11 +29,18 @@ def flatten_text(value):
 
 
 def load_style(skill_root, design):
-    if design.get("profile_ref") == "explicit":
+    profile_ref = design.get("profile_ref")
+    if profile_ref == "explicit":
         return {"style": {"id": "explicit"}, **(design.get("overrides") or {})}, "explicit overrides"
-    global_path = Path.home() / ".agents" / "visual-styles" / "ai-agents-channel" / "tech-calm.yaml"
-    fallback = skill_root / "assets" / "tech-calm.yaml"
+    match = PROFILE_REF_PATTERN.match(profile_ref) if isinstance(profile_ref, str) else None
+    if not match:
+        raise SystemExit(f"Unsupported profile_ref: {profile_ref}")
+    filename = match.group(1).replace("_", "-") + ".yaml"
+    global_path = Path.home() / ".agents" / "visual-styles" / filename
+    fallback = skill_root / "assets" / filename
     path = global_path if global_path.is_file() else fallback
+    if not path.is_file():
+        raise SystemExit(f"Style profile not found: {filename}")
     source_label = "global profile" if path == global_path else "bundled fallback"
     return yaml.safe_load(path.read_text(encoding="utf-8")), source_label
 

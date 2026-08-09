@@ -106,6 +106,18 @@ def main():
     character_line = ", ".join(str(item) for item in composition.get("character") or [])
     composition_rules = [str(rule) for rule in composition.get("rules") or []]
 
+    # The safe area used to be dumped as a raw mapping, which an image model has
+    # no reason to act on. State it as an instruction, and say what counts as a
+    # violation — shadows and background accents are the usual offenders.
+    safe = canvas.get("safe_area_pct") or {}
+    safe_line = (
+        f"Safe area (hard requirement): keep the outer {safe.get('left')}% of the width completely "
+        f"empty on the left and {safe.get('right')}% on the right; keep the top {safe.get('top')}% "
+        f"and the bottom {safe.get('bottom')}% of the height completely empty. Nothing may enter "
+        f"these margins — not lettering, cards, icons, connectors, drop shadows, or background "
+        f"accents. Compose the artwork smaller rather than letting anything touch the edge."
+    )
+
     section_lines, exact_text = [], []
     for section in data["sections"]:
         visible = flatten_text(section.get("visible_text")) + flatten_text(section.get("items"))
@@ -131,7 +143,8 @@ def main():
 
 Create the infographic itself, not a screen, poster mockup, laptop, or presentation display.
 
-Canvas: {canvas['width_px']}x{canvas['height_px']} px, ratio {canvas['target_ratio']}, safe area {canvas['safe_area_pct']}, reading direction {canvas['reading_direction']}.
+Canvas: {canvas['width_px']}x{canvas['height_px']} px, ratio {canvas['target_ratio']}, reading direction {canvas['reading_direction']}.
+{safe_line}
 Information architecture: pattern={architecture['pattern']}, density={architecture['density']}, reading path={architecture['reading_path']}.
 Layout: id={layout['id']}, variant={layout['variant']}, zones={layout['zones']}.
 

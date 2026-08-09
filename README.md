@@ -4,7 +4,7 @@
 
 ![紙感立體貼紙風格黃金樣板](skills/yaml-infographic/assets/paper-warm-sample.png)
 
-內建兩種風格 profile。上圖為預設的「紙感立體貼紙」（`paper_warm`）：厚實圓角貼紙浮起於暖紙底，適合列印講義與明亮教室；下圖為「科技沉穩」（`tech_calm`，隨原始著作附帶），適合暗室螢幕與社群貼文。
+內建兩種風格 profile。上圖為預設的「紙感立體貼紙」（`paper_warm`）：厚實圓角貼紙浮起於暖紙底，背景帶柔和漸層與稀疏的低對比小物件，適合列印講義與明亮教室；下圖為「科技沉穩」（`tech_calm`，隨原始著作附帶），適合暗室螢幕與社群貼文。
 
 ![科技沉穩風格黃金樣板](skills/yaml-infographic/assets/channel-style-tech-calm.png)
 

@@ -3,7 +3,7 @@ schema_version: "agent_visual_style_v1"
 style:
   id: "paper_warm"
   name: "紙感立體貼紙風格"
-  version: "1.1.0"
+  version: "1.2.0"
   audience_context: "教學講義與課堂投影"
   applies_to: ["image_deck", "html_deck", "infographic"]
 
@@ -33,13 +33,15 @@ typography:
 materials: ["thick die-cut vinyl sticker with rounded bevelled edges", "warm matte paper ground", "soft close contact shadow", "subtle satin highlight along top edges"]
 
 composition:
-  character: ["tactile", "dimensional", "friendly", "legible"]
+  character: ["tactile", "dimensional", "layered", "friendly", "legible"]
   rules:
     - "Keep one dominant focal point."
     - "Use clear hierarchy and generous negative space."
     - "Render every card, icon, and badge as a thick rounded sticker lifting off the paper ground, with visible edge thickness and a soft contact shadow beneath."
     - "Create depth through rounded form, material thickness, and soft shadow — never through neon glow or heavy texture."
     - "Give icons chunky three-dimensional bodies rather than thin outlines."
+    - "Fill the ground with a soft warm gradient: the lighter paper tone through the upper centre, easing into the deeper tone at the corners and along the lower edge."
+    - "Scatter a few small low-contrast sticker accents across the empty ground — dots, tiny four-point sparkles, a short dashed trail, a small paper clip or a strip of tape — as quiet depth cues. Keep them sparse, tonal, set well behind the main elements, and never overlapping or touching any text."
 
 infographic:
   default_density: "medium"
@@ -52,6 +54,7 @@ negative_prompt:
   - "Do not use dark or black backgrounds."
   - "No neon, bloom, or cyberpunk decoration."
   - "No flat thin-outline icons and no completely flat vector look."
+  - "Background accents must stay small, sparse, and low contrast; never let them crowd the layout, touch any text, or compete with the main cards."
   - "No long, harsh, or angled cast shadows; keep shadows soft, short, and directly beneath."
   - "No glossy toy plastic or heavy reflections."
   - "No people, robots, mascots, hands, or faces unless explicitly requested."

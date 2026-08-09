@@ -90,6 +90,7 @@ def main():
     negative = style.get("negative_prompt") or []
     typography = style.get("typography") or {}
     emphasis = style.get("emphasis") or {}
+    composition = style.get("composition") or {}
 
     # Image models read the compiled prompt, so a profile may supply `prompt_en`
     # for wording sent to the model and keep font_feel/avoid as human-facing notes.
@@ -102,6 +103,8 @@ def main():
     emphasis_line = " ".join(
         str(value) for value in (emphasis.get("keyword"), emphasis.get("priority")) if value
     ) or DEFAULT_EMPHASIS
+    character_line = ", ".join(str(item) for item in composition.get("character") or [])
+    composition_rules = [str(rule) for rule in composition.get("rules") or []]
 
     section_lines, exact_text = [], []
     for section in data["sections"]:
@@ -140,6 +143,8 @@ Palette: {palette}.
 Materials: {materials}.
 Typography: {typography_line}
 Emphasis: {emphasis_line}
+Composition character: {character_line}.
+Composition rules: {chr(10).join('- ' + rule for rule in composition_rules)}
 
 Output mode: {mode}.
 {mode_rule}

@@ -1,0 +1,108 @@
+schema_version: "yaml_infographic_v1"
+
+document:
+  title: "YAML 五步工作流"
+  audience: "國中教師"
+  purpose: "用一張方形資訊圖表說明 YAML Image Deck 從需求到驗證的標準流程"
+  key_message: "先把需求寫成可驗證的 YAML 規格，再依序編譯、生成與檢查，能讓教學圖片穩定重現"
+  language: "zh-TW"
+
+canvas:
+  profile: "social_square"
+  target_ratio: "1:1"
+  width_px: 1600
+  height_px: 1600
+  safe_area_pct: {left: 6, right: 6, top: 6, bottom: 6}
+  reading_direction: "z_pattern"
+
+design_system:
+  preset: "tech_calm"
+  preset_version: "1.0.0"
+  profile_ref: "global:tech_calm@1.0.0"
+  golden_sample: "assets/channel-style-tech-calm.png"
+  overrides: {}
+
+information_architecture:
+  pattern: "process"
+  density: "low"
+  reading_path: "headline_to_five_steps_to_takeaway"
+
+layout:
+  id: "process_steps"
+  variant: "serpentine_3_plus_2"
+  zones:
+    - {id: "header", rect_pct: [6, 5, 88, 15]}
+    - {id: "content", rect_pct: [6, 23, 88, 58]}
+    - {id: "takeaway", rect_pct: [10, 84, 80, 10]}
+
+sections:
+  - id: "headline"
+    order: 1
+    role: "hero"
+    layout_slot: "header"
+    core_point: "YAML Image Deck 以五個明確步驟建立可重複的圖片產製流程"
+    visible_text:
+      title: "YAML Image Deck"
+      subtitle: "五步工作流"
+    items: []
+    visual:
+      kind: "symbolic"
+      brief: "A clean YAML document symbol feeding one restrained orange signal line into the workflow"
+      subject_count: 1
+    evidence_refs: []
+    emphasis: "primary"
+
+  - id: "workflow"
+    order: 2
+    role: "process"
+    layout_slot: "content"
+    core_point: "需求、規格、提示詞、圖片與驗證依序銜接，每一步都有清楚交付物"
+    visible_text:
+      title: "從想法到成品"
+    items:
+      - "一｜需求釐清"
+      - "二｜建立 YAML"
+      - "三｜編譯提示詞"
+      - "四｜生成圖片"
+      - "五｜驗證輸出"
+    visual:
+      kind: "diagram"
+      brief: "Five large connected rounded modules in a clear three-plus-two serpentine path; distinct icons for brief, YAML document, compiled prompt, image frame, and verification check"
+      subject_count: 5
+    evidence_refs: []
+    emphasis: "secondary"
+
+  - id: "takeaway"
+    order: 3
+    role: "takeaway"
+    layout_slot: "takeaway"
+    core_point: "可重複的規格，是穩定生成與快速檢查的共同基礎"
+    visible_text:
+      title: "規格先行，穩定輸出"
+    items: []
+    visual:
+      kind: "accent"
+      brief: "One concise matte-black conclusion capsule with an orange completion signal and ample breathing room"
+      subject_count: 1
+    evidence_refs: []
+    emphasis: "secondary"
+
+data_integrity:
+  facts_require_source: true
+  exact_numbers: []
+  citations: []
+  datasets: []
+
+accessibility:
+  alt_text: "方形資訊圖由上而下呈現 YAML Image Deck 五步工作流：需求釐清、建立 YAML、編譯提示詞、生成圖片、驗證輸出；橘色連線與節點形狀共同標示順序，結論為規格先行、穩定輸出。"
+  color_not_only_cue: true
+  minimum_contrast_ratio: 4.5
+
+output:
+  mode: "baked"
+  format: "png"
+  final_path: "outputs/yaml-image-deck-five-step-workflow.png"
+  prompt_record: "outputs/prompts/yaml-image-deck-five-step-workflow.md"
+
+validation:
+  profile: "strict"

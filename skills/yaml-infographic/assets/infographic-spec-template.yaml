@@ -1,0 +1,97 @@
+schema_version: "yaml_infographic_v1"
+
+document:
+  title: "YAML 如何生成一致的圖片"
+  audience: "AI 工具學習者"
+  purpose: "解釋從規格到圖片的工作流程"
+  key_message: "先定義資訊與視覺規則，再生成圖片"
+  language: "zh-TW"
+
+canvas:
+  profile: "social_portrait"
+  target_ratio: "4:5"
+  width_px: 1600
+  height_px: 2000
+  safe_area_pct: {left: 6, right: 6, top: 6, bottom: 6}
+  reading_direction: "top_to_bottom"
+
+design_system:
+  preset: "tech_calm"
+  preset_version: "1.0.0"
+  profile_ref: "global:tech_calm@1.0.0"
+  golden_sample: "assets/channel-style-tech-calm.png"
+  overrides: {}
+
+information_architecture:
+  pattern: "process"
+  density: "medium"
+  reading_path: "headline_to_steps_to_takeaway"
+
+layout:
+  id: "process_steps"
+  variant: "vertical_spine"
+  zones:
+    - {id: "header", rect_pct: [6, 5, 88, 15]}
+    - {id: "content", rect_pct: [6, 22, 88, 60]}
+    - {id: "takeaway", rect_pct: [6, 85, 88, 10]}
+
+sections:
+  - id: "headline"
+    order: 1
+    role: "hero"
+    layout_slot: "header"
+    core_point: "YAML 是圖片生成的設計契約"
+    visible_text: {title: "YAML 如何生成一致的圖片"}
+    items: []
+    visual: {kind: "symbolic", brief: "A structured YAML block becoming a coordinated visual system", subject_count: 1}
+    evidence_refs: []
+    emphasis: "primary"
+
+  - id: "workflow"
+    order: 2
+    role: "process"
+    layout_slot: "content"
+    core_point: "五個步驟把內容轉成一致圖片"
+    visible_text: {title: "五步工作流"}
+    items: ["需求釐清", "建立 YAML", "編譯提示詞", "生成圖片", "驗證輸出"]
+    visual: {kind: "diagram", brief: "Five connected modules on a restrained vertical signal path", subject_count: 5}
+    evidence_refs: []
+    emphasis: "secondary"
+
+  - id: "takeaway"
+    order: 3
+    role: "takeaway"
+    layout_slot: "takeaway"
+    core_point: "一致性來自可重複的規格"
+    visible_text: {title: "先有規格，再生成"}
+    items: []
+    visual: {kind: "accent", brief: "One concise illuminated conclusion block", subject_count: 1}
+    evidence_refs: []
+    emphasis: "secondary"
+
+data_integrity:
+  facts_require_source: true
+  exact_numbers: []
+  citations: []
+  datasets: []
+
+accessibility:
+  alt_text: "由上而下說明 YAML 圖片工作流：需求釐清、建立 YAML、編譯提示詞、生成圖片與驗證輸出，結論是先有規格再生成。"
+  color_not_only_cue: true
+  minimum_contrast_ratio: 4.5
+
+output:
+  mode: "plate"
+  format: "png"
+  plate_path: "outputs/source/infographic-plate.png"
+  overlay_path: "outputs/source/infographic-overlay.svg"
+  final_path: "outputs/infographic.png"
+  prompt_record: "outputs/prompts/infographic.md"
+  background_text_policy: "none"
+  overlay_blocks:
+    - {id: "title", section_ref: "headline", zone: "header"}
+    - {id: "workflow", section_ref: "workflow", zone: "content"}
+    - {id: "takeaway", section_ref: "takeaway", zone: "takeaway"}
+
+validation:
+  profile: "strict"

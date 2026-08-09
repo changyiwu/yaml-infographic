@@ -1,0 +1,135 @@
+schema_version: "yaml_infographic_v1"
+
+document:
+  title: "Baked 與 Plate 怎麼選？"
+  audience: "需要製作繁體中文資訊圖表的內容創作者與 AI 工具使用者"
+  purpose: "比較 Baked 與 Plate 的文字來源、可編輯性與適用情境，協助選擇輸出模式"
+  key_message: "短文案與視覺敘事可選 Baked；需要精準繁中與後續修改則選 Plate"
+  language: "zh-TW"
+
+canvas:
+  profile: "social_portrait"
+  target_ratio: "4:5"
+  width_px: 1600
+  height_px: 2000
+  safe_area_pct: {left: 6, right: 6, top: 6, bottom: 6}
+  reading_direction: "z_pattern"
+
+design_system:
+  preset: "tech_calm"
+  preset_version: "1.0.0"
+  profile_ref: "global:tech_calm@1.0.0"
+  golden_sample: "assets/channel-style-tech-calm.png"
+  overrides: {}
+
+information_architecture:
+  pattern: "comparison"
+  density: "medium"
+  reading_path: "headline_to_side_by_side_comparison_to_takeaway"
+
+layout:
+  id: "comparison_split"
+  variant: "mirrored_cards_with_shared_category_rows"
+  zones:
+    - {id: "header", rect_pct: [6, 6, 88, 13]}
+    - {id: "baked_column", rect_pct: [6, 23, 42, 56]}
+    - {id: "plate_column", rect_pct: [52, 23, 42, 56]}
+    - {id: "takeaway", rect_pct: [6, 84, 88, 10]}
+
+sections:
+  - id: "headline"
+    order: 1
+    role: "hero"
+    layout_slot: "header"
+    core_point: "用同一組判準快速理解 Baked 與 Plate 的差異"
+    visible_text:
+      title: "Baked 與 Plate 怎麼選？"
+      subtitle: "文字來源 × 可編輯性 × 適用情境"
+    items: []
+    visual:
+      kind: "comparison_frame"
+      brief: "A restrained split-frame motif joining one fused surface on the left and two aligned layers on the right, with no text or symbols"
+      subject_count: 2
+    evidence_refs: []
+    emphasis: "secondary"
+
+  - id: "baked"
+    order: 2
+    role: "comparison_group"
+    layout_slot: "baked_column"
+    core_point: "Baked 把文字與視覺一次生成並固定在同一張圖裡"
+    visible_text:
+      title: "Baked"
+      subtitle: "一次烘進畫面"
+    items:
+      - "文字來源｜影像模型直接生成"
+      - "可編輯性｜圖文合一，難以單改"
+      - "適用情境｜短文案、低密度、重氛圍"
+    visual:
+      kind: "fused_surface"
+      brief: "One matte smoked-glass slab with visual layers visibly fused into a single amber-edged object, leaving three clean overlay rows"
+      subject_count: 1
+    evidence_refs: []
+    emphasis: "secondary"
+
+  - id: "plate"
+    order: 3
+    role: "comparison_group"
+    layout_slot: "plate_column"
+    core_point: "Plate 先生成無字底圖，再用原生疊加層放入精確內容"
+    visible_text:
+      title: "Plate"
+      subtitle: "底圖與文字分層"
+    items:
+      - "文字來源｜無字底圖＋原生 SVG 疊字"
+      - "可編輯性｜文字、圖表、標示可獨立調整"
+      - "適用情境｜繁中、精確資料、常改版內容"
+    visual:
+      kind: "layered_plate"
+      brief: "A matte background plate and a separate translucent overlay plane aligned in depth, with restrained orange guide lines and three clean overlay rows"
+      subject_count: 2
+    evidence_refs: []
+    emphasis: "secondary"
+
+  - id: "takeaway"
+    order: 4
+    role: "takeaway"
+    layout_slot: "takeaway"
+    core_point: "當文字必須正確且還要修改時，Plate 是較穩妥的選擇"
+    visible_text:
+      title: "要精準、要改版，就選 Plate"
+    items: []
+    visual:
+      kind: "decision_accent"
+      brief: "One calm yellow priority beacon anchored to the right-hand layered system, supported by a shape cue rather than color alone"
+      subject_count: 1
+    evidence_refs: []
+    emphasis: "primary"
+
+data_integrity:
+  facts_require_source: true
+  exact_numbers: []
+  citations: []
+  datasets: []
+
+accessibility:
+  alt_text: "四比五直式資訊圖表，以左右雙欄比較 Baked 與 Plate。Baked 的文字由影像模型直接生成，圖文合一且較難單獨修改，適合短文案、低資訊密度與氛圍敘事；Plate 使用無字底圖加原生 SVG 疊字，文字、圖表與標示可分開編輯，適合繁體中文、精確資料與經常改版的內容。結論是需要精準與改版時選 Plate。"
+  color_not_only_cue: true
+  minimum_contrast_ratio: 4.5
+
+output:
+  mode: "plate"
+  format: "png"
+  plate_path: "outputs/source/comparison-plate.png"
+  overlay_path: "outputs/source/comparison-overlay.svg"
+  final_path: "outputs/comparison-baked-vs-plate.png"
+  prompt_record: "outputs/prompts/comparison-baked-vs-plate.md"
+  background_text_policy: "none"
+  overlay_blocks:
+    - {id: "headline_text", section_ref: "headline", zone: "header"}
+    - {id: "baked_text", section_ref: "baked", zone: "baked_column"}
+    - {id: "plate_text", section_ref: "plate", zone: "plate_column"}
+    - {id: "takeaway_text", section_ref: "takeaway", zone: "takeaway"}
+
+validation:
+  profile: "strict"

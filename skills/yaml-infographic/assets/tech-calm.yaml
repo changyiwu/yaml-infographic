@@ -1,0 +1,55 @@
+schema_version: "agent_visual_style_v1"
+
+style:
+  id: "tech_calm"
+  name: "科技沉穩風格"
+  version: "1.0.0"
+  audience_context: "AI Agents 教學頻道"
+  applies_to: ["image_deck", "html_deck", "infographic"]
+
+palette:
+  background: "#050505"
+  background_secondary: "#0B0B0B"
+  surface: "#202020"
+  text: "#F5F7FA"
+  keyword: "#FF6A00"
+  highlight: "#FFD400"
+
+emphasis:
+  keyword: "Use orange for keywords, active paths, and signal lines."
+  priority: "Use yellow only for the single highest-priority statement, number, or callout."
+
+typography:
+  language: "zh-TW"
+  font_feel: "粗圓、飽滿、低稜角的繁體中文無襯線字"
+  avoid: "尖角、窄長、機械感、科技模板字"
+  preferred_fonts: ["jf open 粉圓 2.1", "GenSenRounded TW", "GenJyuuGothic"]
+
+materials: ["matte black metal", "smoked glass", "restrained amber glow"]
+
+composition:
+  character: ["mature", "calm", "precise", "high_contrast"]
+  rules:
+    - "Keep one dominant focal point."
+    - "Use clear hierarchy and generous negative space."
+    - "Prefer asymmetric editorial balance and restrained technical diagrams."
+    - "Create depth through material contrast rather than decorative texture."
+
+infographic:
+  default_density: "medium"
+  reading_path: "top_to_bottom"
+  max_sections: 6
+  data_style: "Clear numeric hierarchy, restrained charts, explicit sources."
+
+negative_prompt:
+  - "No logos, watermarks, presentation mockups, or unrequested microcopy."
+  - "Do not use purple, blue, or cyan as dominant colors."
+  - "No people, robots, mascots, hands, or faces unless explicitly requested."
+  - "No glossy toy plastic, excessive bloom, or neon-heavy cyberpunk decoration."
+
+golden_sample: "channel-style-tech-calm.png"
+
+override_policy:
+  default_when_unspecified: true
+  explicit_user_style_wins: true
+  project_brand_system_wins: true

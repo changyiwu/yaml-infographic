@@ -52,9 +52,7 @@ negative_prompt:
   - "No neon, glow, bloom, or cyberpunk decoration."
   - "No people, robots, mascots, hands, or faces unless explicitly requested."
 
-# 尚未產出本風格的黃金樣張。留空是刻意的——寧可沒有錨點，
-# 也不要拿 tech_calm 的黑底樣張當紙感風格的參考圖，那會直接誤導生圖。
-golden_sample: ""
+golden_sample: "paper-warm-sample.png"
 
 override_policy:
   default_when_unspecified: true

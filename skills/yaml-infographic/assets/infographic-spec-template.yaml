@@ -16,10 +16,10 @@ canvas:
   reading_direction: "top_to_bottom"
 
 design_system:
-  preset: "tech_calm"
+  preset: "paper_warm"
   preset_version: "1.0.0"
-  profile_ref: "global:tech_calm@1.0.0"
-  golden_sample: "assets/channel-style-tech-calm.png"
+  profile_ref: "global:paper_warm@1.0.0"
+  golden_sample: "assets/paper-warm-sample.png"
   overrides: {}
 
 information_architecture:

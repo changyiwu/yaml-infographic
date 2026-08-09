@@ -18,11 +18,11 @@
 - [x] 階段一：法律與身分歸屬
   - [x] `LICENSE` 增列自己的著作權行（**保留**三師爸原行）
   - [x] `README.md` 安裝指令改指向本 repo，並新增〈出處與授權〉
-- [ ] 階段二：解開風格鎖
+- [x] 階段二：解開風格鎖
   - [x] `validate_spec.py` 移除硬編碼調色盤，改成讀 YAML 做自我一致性檢查
   - [x] 新增自有風格 profile `paper_warm`（紙感教材），`tech_calm` 降為並列範例
-  - [ ] 產出 `paper_warm` 的黃金樣張（目前 `golden_sample` 刻意留空）
-  - [ ] 樣張產出後，把 `infographic-spec-template.yaml` 的預設 profile 切到 `paper_warm`
+  - [x] 產出 `paper_warm` 的黃金樣張 `paper-warm-sample.png`
+  - [x] 把 `infographic-spec-template.yaml` 的預設 profile 切到 `paper_warm`
 - [x] 階段三：修正程式問題
   - [x] `compile_prompt.py` 實際讀取 style YAML 的 `typography` 與 `emphasis`
   - [x] `compile_prompt.py` 補 `sys.exit(main())`、清掉 palette fallback 死碼

@@ -26,12 +26,12 @@ Bundled profiles:
 
 | Reference | File | Look | Golden sample |
 |---|---|---|---|
-| `global:paper_warm@1.0.0` | `paper-warm.yaml` | Warm paper, ink-grey text, amber keywords, red for the single top emphasis | **Not yet produced** |
+| `global:paper_warm@1.0.0` (default) | `paper-warm.yaml` | Warm paper, ink-grey text, amber keywords, red for the single top emphasis | `paper-warm-sample.png` |
 | `global:tech_calm@1.0.0` | `tech-calm.yaml` | Near-black surfaces, ice-white text, orange keywords, yellow for the single top emphasis | `channel-style-tech-calm.png` |
 
 Any profile declaring a matching `style.id`, `style.version`, and a complete `palette` is equally valid — nothing about a specific palette is hard-coded in the validator.
 
-`paper_warm` has no golden sample yet, so a `spec.yaml` using it still has to point `design_system.golden_sample` at an existing image. Do not point it at the `tech_calm` sample: a near-black reference image will actively fight a warm-paper prompt. Produce a `paper_warm` sample first, or stay on `tech_calm` until one exists.
+Always pair a spec with its own profile's sample. Pointing a warm-paper spec at the near-black sample, or the reverse, gives the image model a reference that fights its own prompt.
 
 Use `assets/channel-style-tech-calm.png` as the bundled golden-sample fallback. Preserve near-black surfaces, ice-white text, orange keywords and signal lines, and yellow only for the single highest-priority emphasis. Explicit user or project styles override the default profile.
 

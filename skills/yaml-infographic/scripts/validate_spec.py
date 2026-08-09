@@ -102,7 +102,17 @@ def main():
     parser.add_argument("--spec", required=True)
     args = parser.parse_args()
     path = Path(args.spec)
-    data = yaml.safe_load(path.read_text(encoding="utf-8"))
+    try:
+        data = yaml.safe_load(path.read_text(encoding="utf-8"))
+    except FileNotFoundError:
+        print(f"INVALID\n- E_SPEC_NOT_FOUND: {path}")
+        return 1
+    except (OSError, UnicodeDecodeError) as exc:
+        print(f"INVALID\n- E_SPEC_UNREADABLE: {exc}")
+        return 1
+    except yaml.YAMLError as exc:
+        print(f"INVALID\n- E_SPEC_MALFORMED: {exc}")
+        return 1
     errors, warnings = [], []
 
     if not isinstance(data, dict):

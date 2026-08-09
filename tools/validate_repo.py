@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import os
 from pathlib import Path
+import re
 import subprocess
 import sys
 
@@ -42,15 +43,27 @@ golden_sample = skill / "assets" / style.get("golden_sample", "")
 if not golden_sample.is_file():
     raise SystemExit(f"Bundled golden sample does not exist: {golden_sample}")
 
-forbidden = ("C:\\Users\\", "G:\\我的雲端硬碟", "gh" + "o_", "api" + "_key:", "pass" + "word:")
+# Drive letters are not hard-coded: any machine's home or cloud-drive path is
+# rejected, and secrets must look like real values rather than the bare word.
+# Patterns are written so this file does not trip its own scan.
+forbidden = (
+    (re.compile(r"[A-Za-z]:[\\/]Users[\\/]\S"), "本機使用者絕對路徑"),
+    (re.compile(r"[A-Za-z]:[\\/]我的雲端硬碟"), "雲端硬碟絕對路徑"),
+    (re.compile(r"gh[po]_[A-Za-z0-9]{20,}"), "GitHub token"),
+    (re.compile(r"(?i)\bapi.?key\s*[:=]\s*[\"']?[A-Za-z0-9_\-]{8,}"), "API key"),
+    (re.compile(r"(?i)\bpassword\s*[:=]\s*[\"']?\S"), "password"),
+)
 text_suffixes = {".md", ".py", ".ps1", ".yaml", ".yml", ".txt"}
+skip_dirs = {".git", "__pycache__", ".venv", "venv", "outputs", "output", "tmp"}
 for path in root.rglob("*"):
     if not path.is_file() or path.suffix.lower() not in text_suffixes:
         continue
+    if skip_dirs.intersection(path.relative_to(root).parts):
+        continue
     text = path.read_text(encoding="utf-8")
-    for marker in forbidden:
-        if marker.lower() in text.lower():
-            raise SystemExit(f"Potential private value in {path.relative_to(root)}: {marker}")
+    for pattern, label in forbidden:
+        if pattern.search(text):
+            raise SystemExit(f"Potential private value in {path.relative_to(root)}: {label}")
 
 env = os.environ.copy()
 env["PYTHONUTF8"] = "1"

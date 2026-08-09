@@ -28,6 +28,8 @@ Use `assets/channel-style-tech-calm.png` as the bundled golden-sample fallback. 
 
 ## Workflow
 
+Run every command from the project directory that holds `spec.yaml`. `<SKILL_DIR>` is this skill's installed location — for example `%USERPROFILE%\.claude\skills\yaml-infographic` for Claude Code, or `%USERPROFILE%\.codex\skills\yaml-infographic` for Codex. When working inside the source repository instead, `<SKILL_DIR>` is `skills\yaml-infographic`.
+
 1. Define the audience, purpose, one key message, publishing surface, and required aspect ratio.
 2. Create `spec.yaml` from `assets/infographic-spec-template.yaml`.
 3. Select the information relationship and matching layout from `references/layout-library.md`.
@@ -35,13 +37,13 @@ Use `assets/channel-style-tech-calm.png` as the bundled golden-sample fallback. 
 5. Validate before generation:
 
    ```powershell
-   python .\scripts\validate_spec.py --spec .\spec.yaml
+   python <SKILL_DIR>\scripts\validate_spec.py --spec .\spec.yaml
    ```
 
 6. Compile and save the image prompt:
 
    ```powershell
-   python .\scripts\compile_prompt.py --spec .\spec.yaml
+   python <SKILL_DIR>\scripts\compile_prompt.py --spec .\spec.yaml
    ```
 
 7. Generate the visual with built-in image generation. For `plate`, generate a text-free background and apply exact text, charts, or formulas afterward.
@@ -49,7 +51,7 @@ Use `assets/channel-style-tech-calm.png` as the bundled golden-sample fallback. 
 9. Verify declared outputs:
 
    ```powershell
-   python .\scripts\verify_output.py --spec .\spec.yaml --project-root .
+   python <SKILL_DIR>\scripts\verify_output.py --spec .\spec.yaml --project-root .
    ```
 
 10. Report the YAML, prompt record, final image, source plate or overlay, mode, dimensions, and style profile version.

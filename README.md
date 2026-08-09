@@ -72,7 +72,7 @@ python -m pip install -r .\requirements.txt
 Copy-Item .\skills\yaml-infographic\assets\infographic-spec-template.yaml .\spec.yaml
 ```
 
-依題目修改 `spec.yaml` 後，先驗證再編譯提示詞：
+依題目修改 `spec.yaml` 後，先驗證再編譯提示詞（以下為在本 Repo 內操作；**安裝後**改用技能目錄的路徑，見 [SKILL.md](skills/yaml-infographic/SKILL.md)）：
 
 ```powershell
 python .\skills\yaml-infographic\scripts\validate_spec.py --spec .\spec.yaml

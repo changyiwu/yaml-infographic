@@ -15,21 +15,21 @@
 
 ## 目標與路線圖
 
-- [ ] 階段一：法律與身分歸屬
-  - [ ] `LICENSE` 增列自己的著作權行（**保留**三師爸原行）
-  - [ ] `README.md` 安裝指令改指向本 repo
+- [x] 階段一：法律與身分歸屬
+  - [x] `LICENSE` 增列自己的著作權行（**保留**三師爸原行）
+  - [x] `README.md` 安裝指令改指向本 repo，並新增〈出處與授權〉
 - [ ] 階段二：解開風格鎖
-  - [ ] `validate_spec.py` 移除硬編碼調色盤，改成讀 YAML 做自我一致性檢查
+  - [x] `validate_spec.py` 移除硬編碼調色盤，改成讀 YAML 做自我一致性檢查
   - [ ] 新增自有風格 profile，`tech_calm` 降為範例
   - [ ] 產出自己的黃金樣張，取代 `channel-style-tech-calm.png`
-- [ ] 階段三：修正程式問題
-  - [ ] `compile_prompt.py` 實際讀取 style YAML 的 `typography` 與 `emphasis`
-  - [ ] `compile_prompt.py` 補 `sys.exit(main())`、清掉 palette fallback 死碼
-  - [ ] `validate_spec.py` 的 YAML 載入包 try／except
-  - [ ] `validate_repo.py` 機密掃描改成符合本機環境
-  - [ ] `.gitattributes` 首行補 `eol=lf`
-- [ ] 階段四：文件一致性
-  - [ ] 統一 SKILL.md 與 README 的 script 路徑寫法，改成安裝後真的可用的形式
+- [x] 階段三：修正程式問題
+  - [x] `compile_prompt.py` 實際讀取 style YAML 的 `typography` 與 `emphasis`
+  - [x] `compile_prompt.py` 補 `sys.exit(main())`、清掉 palette fallback 死碼
+  - [x] `validate_spec.py` 的 YAML 載入包 try／except
+  - [x] `validate_repo.py` 機密掃描改成符合本機環境
+  - [x] `.gitattributes` 首行補 `eol=lf`
+- [x] 階段四：文件一致性
+  - [x] 統一 SKILL.md 與 README 的 script 路徑寫法，改成安裝後真的可用的形式
 
 ## 資料夾結構
 

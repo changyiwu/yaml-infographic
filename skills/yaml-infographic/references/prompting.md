@@ -1,18 +1,20 @@
-# Infographic Prompt Compilation
+# 資訊圖表提示詞編譯
 
-Compile prompts in this order:
+依下列順序編譯提示詞：
 
-1. Exact canvas dimensions, ratio, safe area, and reading direction.
-2. Information pattern, layout zones, density, and reading path.
-3. Section order, visual subjects, item counts, and evidence relationships.
-4. Versioned style profile, palette roles, material language, and golden sample.
-5. Output-mode rules.
-6. Negative constraints.
+1. 精確的畫布尺寸、比例、安全區與閱讀方向。
+2. 資訊型態、版型區塊、資訊密度與閱讀路徑。
+3. section 順序、視覺主體、項目數量與佐證關係。
+4. 版本化的風格 profile、調色盤角色、材質語彙與黃金樣張。
+5. 產出模式規則。
+6. 負面約束（negative constraints）。
 
-For `baked`, quote every visible string exactly and prohibit extra characters. Keep total visible Traditional Chinese copy short.
+`baked` 模式要**逐字引用每一個可見字串**，並禁止模型加上任何額外字元。可見的繁體中文文案總量要盡量短。
 
-For `plate`, request a complete text-free designed background with reserved zones. State: no letters, numbers, labels, logos, watermarks, charts with fake values, or UI mockups. Add exact text and data natively afterward.
+`plate` 模式要求的是一張完整的、**無任何文字**的設計底圖，並預留好各區塊。要明確聲明：不可有字母、數字、標籤、logo、浮水印、數值造假的圖表，或 UI 假畫面。精確文字與資料一律事後以原生方式疊上去。
 
-Use orange for keywords, paths, and signals. Use yellow only for the single `primary` emphasis. Never use color as the only relationship cue.
+橘色用於關鍵字、路徑與訊號。黃色只留給唯一的 `primary` 強調。絕不可把顏色當成表達關係的唯一線索。
 
-Do not ask image generation to draw exact charts, tables, maps, formulas, axes, scales, or geometry. Render those as native overlay assets.
+不要叫生圖模型畫精確的圖表、表格、地圖、公式、座標軸、比例尺或幾何圖形——那些要用原生疊加素材繪製。
+
+> 提示詞是送給生圖模型讀的，所以風格 profile 裡那些會被串進提示詞的欄位（`materials`、`composition.rules`、`negative_prompt`、`emphasis`、`typography.prompt_en`，以及各 section 的 `visual.brief`）刻意維持英文。中文提示詞會提高生圖模型誤讀的風險。給人看的說明則寫中文（例如 `font_feel`、`avoid`）。

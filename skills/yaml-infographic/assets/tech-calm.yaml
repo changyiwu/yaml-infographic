@@ -42,7 +42,7 @@ infographic:
   default_density: "medium"
   reading_path: "top_to_bottom"
   max_sections: 6
-  data_style: "Clear numeric hierarchy, restrained charts, explicit sources."
+  data_style: "數字層級清楚、圖表克制、出處明確。"
 
 negative_prompt:
   - "No logos, watermarks, presentation mockups, or unrequested microcopy."

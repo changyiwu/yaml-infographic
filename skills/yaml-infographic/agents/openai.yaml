@@ -1,4 +1,4 @@
 interface:
   display_name: "YAML Infographic"
   short_description: "科技沉穩風格的 YAML 單張資訊圖表完整規劃與圖片生成"
-  default_prompt: "Use $yaml-infographic to plan and generate a consistent tech-calm infographic from my content."
+  default_prompt: "用 $yaml-infographic 把我的內容規劃成一張風格一致的單張資訊圖表，並生成圖片。"

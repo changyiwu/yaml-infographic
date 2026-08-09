@@ -1,22 +1,22 @@
-# Controlled Infographic Layouts
+# 受控資訊圖表版型庫
 
-Choose by information relationship, not decoration.
+依**資訊關係**選擇，不是依裝飾效果選擇。
 
-| Pattern | Layout IDs | Content budget |
+| 資訊型態 | 版型 ID | 內容容量 |
 |---|---|---|
-| `focus` | `focus_hero` | One claim and one focal visual |
-| `metric` | `single_metric` | One primary metric and up to three supporting facts |
-| `process` | `process_steps` | Three to seven ordered items |
-| `cycle` | `cycle_loop` | Three to six nodes |
-| `comparison` | `comparison_split`, `matrix_quadrant` | Two groups of two to five items, or exactly four cells |
-| `timeline` | `timeline` | Three to eight events |
-| `hierarchy` | `hierarchy_tree` | Two to four levels, up to nine nodes |
-| `classification` | `classification_grid` | Four to eight groups |
-| `cause_effect` | `cause_effect_chain` | Three to seven nodes |
-| `relationship` | `relationship_map` | Up to eight nodes |
-| `data` | `data_story` | One main chart, supporting facts, one conclusion |
-| `list` | `ranked_list`, `checklist` | Three to eight items |
-| `anatomy` | `anatomy_callout` | One subject and three to eight callouts |
-| `story` | `modular_story` | Three to six modules per generated zone |
+| `focus` | `focus_hero` | 一個主張搭配一個焦點視覺 |
+| `metric` | `single_metric` | 一個主要數字，最多三項輔助事實 |
+| `process` | `process_steps` | 三到七個有序項目 |
+| `cycle` | `cycle_loop` | 三到六個節點 |
+| `comparison` | `comparison_split`、`matrix_quadrant` | 兩組各二到五項，或剛好四格 |
+| `timeline` | `timeline` | 三到八個事件 |
+| `hierarchy` | `hierarchy_tree` | 二到四層，最多九個節點 |
+| `classification` | `classification_grid` | 四到八組 |
+| `cause_effect` | `cause_effect_chain` | 三到七個節點 |
+| `relationship` | `relationship_map` | 最多八個節點 |
+| `data` | `data_story` | 一張主圖表、若干輔助事實、一個結論 |
+| `list` | `ranked_list`、`checklist` | 三到八個項目 |
+| `anatomy` | `anatomy_callout` | 一個主體，三到八個標註 |
+| `story` | `modular_story` | 每個生成區塊三到六個模組 |
 
-Use `modular_story` and zone-by-zone plate generation for extreme long images. Recompose when changing aspect ratio; do not crop one layout into another.
+極長的長圖用 `modular_story`，並逐區塊生成底圖。換長寬比時要**重新構圖**，不要把某個版型硬裁成另一個版型。

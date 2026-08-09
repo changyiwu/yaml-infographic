@@ -1,24 +1,24 @@
-# Infographic Validation
+# 資訊圖表驗收
 
-Validate in this order:
+依下列順序驗證：
 
-1. Schema, enums, unique section IDs, sequential order, and layout compatibility.
-2. Canvas dimensions, ratio tolerance, safe area, reading direction, and social UI zones.
-3. Content budget, one primary emphasis, section item limits, and readable thumbnail scale.
-4. Exact-number source links, dataset lengths, units, and `as_of` dates for changing data.
-5. Resolvable style profile version, golden sample, rounded typography, contrast, and non-color cues.
-6. Baked or plate artifact contract and project-relative safe paths.
-7. Final raster dimensions and ratio; for plate, verify plate and final image match.
-8. Visual inspection at full size and approximately 25% thumbnail scale.
+1. Schema、enum 值、section ID 不重複、順序連續，以及版型相容性。
+2. 畫布尺寸、比例容差、安全區、閱讀方向與社群 UI 遮擋區。
+3. 內容容量、只有一個 primary 強調、section 項目數上限，以及縮圖尺度下的可讀性。
+4. 精確數字的出處連結、資料集長度、單位，以及會變動資料的 `as_of` 日期。
+5. 風格 profile 版本可解析、黃金樣張、圓潤字體、對比度與非顏色線索。
+6. baked 或 plate 的產物契約，以及專案相對的安全路徑。
+7. 最終點陣圖的尺寸與比例；plate 模式還要確認底圖與最終圖片一致。
+8. 以原圖尺寸與約 25% 縮圖尺度各做一次目視檢查。
 
-Reject:
+以下情況一律退回：
 
-- `slides` or slide-deck fields.
-- Ratio and pixel-dimension mismatch.
-- Unsupported information patterns or layouts.
-- Baked output with overlays, precision-critical data, or excessive copy.
-- Plate output without a text-free plate, SVG overlay source, and overlay blocks.
-- Exact source-dependent numbers without citations.
-- More than one `primary` emphasis.
-- Absolute paths, parent traversal, or outputs outside the project.
-- AI-generated charts, maps, formulas, axes, or exact geometry presented as verified data.
+- 出現 `slides` 或任何簡報式欄位。
+- 比例與像素尺寸對不上。
+- 使用不支援的資訊型態或版型。
+- baked 產出卻帶有疊加層、精確性要求高的資料，或過量文案。
+- plate 產出卻缺少無字底圖、SVG 疊加層原始檔或 overlay blocks。
+- 依賴外部來源的精確數字沒有引用出處。
+- 超過一個 `primary` 強調。
+- 絕對路徑、上層目錄穿越（`..`），或產出跑到專案外面。
+- 把 AI 生成的圖表、地圖、公式、座標軸或精確幾何，當成已查證的資料呈現。

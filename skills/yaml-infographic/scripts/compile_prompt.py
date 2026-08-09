@@ -2,6 +2,7 @@
 import argparse
 from pathlib import Path
 import re
+import sys
 
 try:
     import yaml
@@ -10,6 +11,16 @@ except ImportError:
 
 
 PROFILE_REF_PATTERN = re.compile(r"^global:([a-z][a-z0-9_]*)@(\d+\.\d+\.\d+)$")
+
+# Used only when a profile declares no typography or emphasis of its own.
+DEFAULT_TYPOGRAPHY = (
+    "bold rounded Traditional Chinese, thick even strokes, soft terminals, generous counters, "
+    "low corner sharpness. Avoid condensed, angular, stencil, or mechanical Chinese type."
+)
+DEFAULT_EMPHASIS = (
+    "Use the keyword colour for keywords and signal paths; reserve the highlight colour for the "
+    "single primary emphasis."
+)
 
 
 def flatten_text(value):
@@ -72,9 +83,25 @@ def main():
     architecture = data["information_architecture"]
     layout = data["layout"]
     mode = output["mode"]
-    palette = style.get("palette") or (style.get("overrides") or {}).get("palette") or design.get("overrides", {}).get("palette", {})
-    materials = style.get("materials") or design.get("overrides", {}).get("materials", [])
-    negative = style.get("negative_prompt") or design.get("overrides", {}).get("negative_prompt", [])
+    # For `explicit`, load_style already flattens overrides onto the style mapping,
+    # so every lookup below reads from one place regardless of profile kind.
+    palette = style.get("palette") or {}
+    materials = style.get("materials") or []
+    negative = style.get("negative_prompt") or []
+    typography = style.get("typography") or {}
+    emphasis = style.get("emphasis") or {}
+
+    # Image models read the compiled prompt, so a profile may supply `prompt_en`
+    # for wording sent to the model and keep font_feel/avoid as human-facing notes.
+    typography_line = typography.get("prompt_en") or " ".join(
+        part for part in (
+            typography.get("font_feel"),
+            f"Avoid {typography['avoid']}." if typography.get("avoid") else None,
+        ) if part
+    ) or DEFAULT_TYPOGRAPHY
+    emphasis_line = " ".join(
+        str(value) for value in (emphasis.get("keyword"), emphasis.get("priority")) if value
+    ) or DEFAULT_EMPHASIS
 
     section_lines, exact_text = [], []
     for section in data["sections"]:
@@ -111,8 +138,8 @@ Sections:
 Style profile: {design['profile_ref']} ({style_source}).
 Palette: {palette}.
 Materials: {materials}.
-Typography: bold rounded Traditional Chinese, thick even strokes, soft terminals, generous counters, low corner sharpness. Avoid condensed, angular, stencil, or mechanical Chinese type.
-Emphasis: orange for keywords and signal paths; yellow only for the single primary emphasis.
+Typography: {typography_line}
+Emphasis: {emphasis_line}
 
 Output mode: {mode}.
 {mode_rule}
@@ -123,7 +150,8 @@ Negative constraints: {'; '.join(str(item) for item in negative)}
     target.parent.mkdir(parents=True, exist_ok=True)
     target.write_text(prompt, encoding="utf-8")
     print(f"WROTE: {target}")
+    return 0
 
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())

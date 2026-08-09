@@ -24,6 +24,9 @@ typography:
   font_feel: "粗圓、飽滿、低稜角的繁體中文無襯線字"
   avoid: "尖角、窄長、機械感、科技模板字"
   preferred_fonts: ["jf open 粉圓 2.1", "GenSenRounded TW", "GenJyuuGothic"]
+  # 送進生圖模型的字體描述。中文敘述給人看，這一行給模型看——
+  # 中文 prompt 會提高生圖模型誤讀風險，故另備英文。
+  prompt_en: "bold rounded Traditional Chinese, thick even strokes, soft terminals, generous counters, low corner sharpness. Avoid condensed, angular, stencil, or mechanical Chinese type."
 
 materials: ["matte black metal", "smoked glass", "restrained amber glow"]
 

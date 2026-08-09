@@ -28,7 +28,7 @@
 
 ```powershell
 python "$HOME\.codex\skills\.system\skill-installer\scripts\install-skill-from-github.py" `
-  --repo mathruffian-dot/yaml-infographic `
+  --repo changyiwu/yaml-infographic `
   --path skills/yaml-infographic
 ```
 
@@ -37,7 +37,7 @@ python "$HOME\.codex\skills\.system\skill-installer\scripts\install-skill-from-g
 先下載 Repo：
 
 ```powershell
-git clone https://github.com/mathruffian-dot/yaml-infographic.git
+git clone https://github.com/changyiwu/yaml-infographic.git
 Set-Location .\yaml-infographic
 ```
 
@@ -129,6 +129,16 @@ python .\tools\validate_repo.py
 
 測試不會呼叫任何圖片 API，也不需要 API Key。
 
-## 授權
+## 出處與授權
 
-程式、文件與 YAML 採 [MIT License](LICENSE)。示範圖片與風格資產說明見 [LICENSE-ASSETS.md](LICENSE-ASSETS.md)。
+本專案是**改作版本，不是原創**。
+
+| 項目 | 內容 |
+|---|---|
+| 原作者 | 三師爸 Sense Bar（[mathruffian-dot](https://github.com/mathruffian-dot)） |
+| 原始著作 | [mathruffian-dot/yaml-infographic](https://github.com/mathruffian-dot/yaml-infographic)，MIT |
+| 本 Repo | `changyiwu/yaml-infographic`，由 changyiwu 修改與維護 |
+
+YAML 設計合約、資訊架構路由、`baked`／`plate` 雙模式與黃金樣張機制等核心設計，皆由原作者提出。
+
+程式、文件與 YAML 採 [MIT License](LICENSE)，原始著作權聲明完整保留，不可刪改。示範圖片與風格資產說明見 [LICENSE-ASSETS.md](LICENSE-ASSETS.md)。

@@ -1,0 +1,62 @@
+schema_version: "agent_visual_style_v1"
+
+style:
+  id: "paper_warm"
+  name: "紙感教材風格"
+  version: "1.0.0"
+  audience_context: "教學講義與課堂投影"
+  applies_to: ["image_deck", "html_deck", "infographic"]
+
+# 對比度皆以 background 為底計算，全部通過 4.5:1（本技能 accessibility 的下限）：
+# text 12.5:1、keyword 6.1:1、highlight 5.7:1。
+# keyword 刻意用 amber-800 而非較亮的 amber-700——後者僅 4.38:1，未達門檻。
+palette:
+  background: "#F5EFE1"
+  background_secondary: "#EAE2CF"
+  surface: "#FFFFFF"
+  text: "#1F2937"
+  keyword: "#92400E"
+  highlight: "#B91C1C"
+
+emphasis:
+  keyword: "Use the amber tone for keywords, active paths, and signal lines."
+  priority: "Use red only for the single highest-priority statement, number, or callout."
+
+typography:
+  language: "zh-TW"
+  font_feel: "沉穩、易讀、筆畫清晰的繁體中文無襯線字"
+  avoid: "過細、裝飾性、手寫感、科技模板字"
+  preferred_fonts: ["jf open 粉圓 2.1", "GenSenRounded TW", "Noto Sans TC"]
+  # 送進生圖模型的字體描述；中文敘述給人看，這一行給模型看。
+  prompt_en: "clear, sturdy Traditional Chinese sans-serif with even stroke weight and open counters, comfortable at print sizes. Avoid hairline, decorative, handwritten, or mechanical Chinese type."
+
+materials: ["warm uncoated paper", "soft ink", "subtle paper grain"]
+
+composition:
+  character: ["calm", "legible", "editorial", "print_friendly"]
+  rules:
+    - "Keep one dominant focal point."
+    - "Use clear hierarchy and generous negative space."
+    - "Prefer editorial grid balance and restrained diagrams."
+    - "Create depth through tonal paper contrast rather than glow or drop shadow."
+
+infographic:
+  default_density: "medium"
+  reading_path: "top_to_bottom"
+  max_sections: 6
+  data_style: "Clear numeric hierarchy, restrained charts, explicit sources."
+
+negative_prompt:
+  - "No logos, watermarks, presentation mockups, or unrequested microcopy."
+  - "Do not use dark or black backgrounds."
+  - "No neon, glow, bloom, or cyberpunk decoration."
+  - "No people, robots, mascots, hands, or faces unless explicitly requested."
+
+# 尚未產出本風格的黃金樣張。留空是刻意的——寧可沒有錨點，
+# 也不要拿 tech_calm 的黑底樣張當紙感風格的參考圖，那會直接誤導生圖。
+golden_sample: ""
+
+override_policy:
+  default_when_unspecified: true
+  explicit_user_style_wins: true
+  project_brand_system_wins: true

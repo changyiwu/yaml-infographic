@@ -9,7 +9,7 @@ Create one complete information graphic from a validated YAML contract. Keep the
 
 ## Defaults
 
-- Use `yaml_spec` planning and the versioned `global:tech_calm@1.0.0` profile unless the user explicitly supplies another style.
+- Use `yaml_spec` planning and one of the bundled versioned profiles unless the user explicitly supplies another style. Pick by publishing surface: `global:paper_warm@1.0.0` for printed handouts and bright rooms, `global:tech_calm@1.0.0` for dark-room screens and social posts.
 - Default to `plate` for Traditional Chinese, exact numbers, charts, dates, citations, formulas, maps, or content intended for later revision.
 - Use `baked` only for low-density visual storytelling with short copy and no precision-critical data.
 - Generate a single canvas, not a slide deck. Do not create a `slides` section.
@@ -22,7 +22,16 @@ A `global:<style_id>@<version>` reference resolves to `<style-id>.yaml` in this 
 1. `%USERPROFILE%\.agents\visual-styles\<style-id>.yaml`
 2. `assets/<style-id>.yaml` bundled with this skill
 
-The default reference is `global:tech_calm@1.0.0`, resolving to `tech-calm.yaml`. Any profile declaring a matching `style.id`, `style.version`, and a complete `palette` is equally valid.
+Bundled profiles:
+
+| Reference | File | Look | Golden sample |
+|---|---|---|---|
+| `global:paper_warm@1.0.0` | `paper-warm.yaml` | Warm paper, ink-grey text, amber keywords, red for the single top emphasis | **Not yet produced** |
+| `global:tech_calm@1.0.0` | `tech-calm.yaml` | Near-black surfaces, ice-white text, orange keywords, yellow for the single top emphasis | `channel-style-tech-calm.png` |
+
+Any profile declaring a matching `style.id`, `style.version`, and a complete `palette` is equally valid — nothing about a specific palette is hard-coded in the validator.
+
+`paper_warm` has no golden sample yet, so a `spec.yaml` using it still has to point `design_system.golden_sample` at an existing image. Do not point it at the `tech_calm` sample: a near-black reference image will actively fight a warm-paper prompt. Produce a `paper_warm` sample first, or stay on `tech_calm` until one exists.
 
 Use `assets/channel-style-tech-calm.png` as the bundled golden-sample fallback. Preserve near-black surfaces, ice-white text, orange keywords and signal lines, and yellow only for the single highest-priority emphasis. Explicit user or project styles override the default profile.
 

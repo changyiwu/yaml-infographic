@@ -38,10 +38,26 @@ prompt = openai.get("interface", {}).get("default_prompt", "")
 if "$yaml-infographic" not in prompt:
     raise SystemExit("agents/openai.yaml default_prompt must mention $yaml-infographic")
 
-style = yaml.safe_load((skill / "assets" / "tech-calm.yaml").read_text(encoding="utf-8"))
-golden_sample = skill / "assets" / style.get("golden_sample", "")
-if not golden_sample.is_file():
-    raise SystemExit(f"Bundled golden sample does not exist: {golden_sample}")
+# Every bundled style profile is checked, not just one hard-coded filename, so
+# adding a profile needs no change here. The filename must match the style id
+# because that is how `profile_ref` resolves to a file.
+profiles = []
+for candidate in sorted((skill / "assets").glob("*.yaml")):
+    data = yaml.safe_load(candidate.read_text(encoding="utf-8"))
+    if not isinstance(data, dict) or data.get("schema_version") != "agent_visual_style_v1":
+        continue
+    profiles.append(candidate.name)
+    style_id = (data.get("style") or {}).get("id")
+    if not style_id:
+        raise SystemExit(f"Style profile declares no style.id: {candidate.relative_to(root)}")
+    expected_name = style_id.replace("_", "-") + ".yaml"
+    if candidate.name != expected_name:
+        raise SystemExit(f"Style profile {candidate.name} must be named {expected_name} to resolve")
+    golden_sample = data.get("golden_sample") or ""
+    if golden_sample and not (skill / "assets" / golden_sample).is_file():
+        raise SystemExit(f"Golden sample declared by {candidate.name} does not exist: {golden_sample}")
+if not profiles:
+    raise SystemExit("No bundled style profile found")
 
 # Drive letters are not hard-coded: any machine's home or cloud-drive path is
 # rejected, and secrets must look like real values rather than the bare word.

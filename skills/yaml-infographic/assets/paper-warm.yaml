@@ -2,8 +2,8 @@ schema_version: "agent_visual_style_v1"
 
 style:
   id: "paper_warm"
-  name: "紙感教材風格"
-  version: "1.0.0"
+  name: "紙感立體貼紙風格"
+  version: "1.1.0"
   audience_context: "教學講義與課堂投影"
   applies_to: ["image_deck", "html_deck", "infographic"]
 
@@ -28,17 +28,18 @@ typography:
   avoid: "過細、裝飾性、手寫感、科技模板字"
   preferred_fonts: ["jf open 粉圓 2.1", "GenSenRounded TW", "Noto Sans TC"]
   # 送進生圖模型的字體描述；中文敘述給人看，這一行給模型看。
-  prompt_en: "clear, sturdy Traditional Chinese sans-serif with even stroke weight and open counters, comfortable at print sizes. Avoid hairline, decorative, handwritten, or mechanical Chinese type."
+  prompt_en: "heavy rounded Traditional Chinese sans-serif with thick even strokes and open counters, rendered as dimensional lettering with a slight bevel and a soft edge highlight. Avoid hairline, decorative, handwritten, or mechanical Chinese type."
 
-materials: ["warm uncoated paper", "soft ink", "subtle paper grain"]
+materials: ["thick die-cut vinyl sticker with rounded bevelled edges", "warm matte paper ground", "soft close contact shadow", "subtle satin highlight along top edges"]
 
 composition:
-  character: ["calm", "legible", "editorial", "print_friendly"]
+  character: ["tactile", "dimensional", "friendly", "legible"]
   rules:
     - "Keep one dominant focal point."
     - "Use clear hierarchy and generous negative space."
-    - "Prefer editorial grid balance and restrained diagrams."
-    - "Create depth through tonal paper contrast rather than glow or drop shadow."
+    - "Render every card, icon, and badge as a thick rounded sticker lifting off the paper ground, with visible edge thickness and a soft contact shadow beneath."
+    - "Create depth through rounded form, material thickness, and soft shadow — never through neon glow or heavy texture."
+    - "Give icons chunky three-dimensional bodies rather than thin outlines."
 
 infographic:
   default_density: "medium"
@@ -49,7 +50,10 @@ infographic:
 negative_prompt:
   - "No logos, watermarks, presentation mockups, or unrequested microcopy."
   - "Do not use dark or black backgrounds."
-  - "No neon, glow, bloom, or cyberpunk decoration."
+  - "No neon, bloom, or cyberpunk decoration."
+  - "No flat thin-outline icons and no completely flat vector look."
+  - "No long, harsh, or angled cast shadows; keep shadows soft, short, and directly beneath."
+  - "No glossy toy plastic or heavy reflections."
   - "No people, robots, mascots, hands, or faces unless explicitly requested."
 
 golden_sample: "paper-warm-sample.png"

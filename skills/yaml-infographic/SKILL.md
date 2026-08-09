@@ -9,7 +9,7 @@ Create one complete information graphic from a validated YAML contract. Keep the
 
 ## Defaults
 
-- Use `yaml_spec` planning and one of the bundled versioned profiles unless the user explicitly supplies another style. Pick by publishing surface: `global:paper_warm@1.0.0` for printed handouts and bright rooms, `global:tech_calm@1.0.0` for dark-room screens and social posts.
+- Use `yaml_spec` planning and one of the bundled versioned profiles unless the user explicitly supplies another style. Pick by publishing surface: `global:paper_warm@1.1.0` for printed handouts and bright rooms, `global:tech_calm@1.0.0` for dark-room screens and social posts.
 - Default to `plate` for Traditional Chinese, exact numbers, charts, dates, citations, formulas, maps, or content intended for later revision.
 - Use `baked` only for low-density visual storytelling with short copy and no precision-critical data.
 - Generate a single canvas, not a slide deck. Do not create a `slides` section.
@@ -26,7 +26,7 @@ Bundled profiles:
 
 | Reference | File | Look | Golden sample |
 |---|---|---|---|
-| `global:paper_warm@1.0.0` (default) | `paper-warm.yaml` | Warm paper, ink-grey text, amber keywords, red for the single top emphasis | `paper-warm-sample.png` |
+| `global:paper_warm@1.1.0` (default) | `paper-warm.yaml` | Thick die-cut stickers lifting off warm paper; ink-grey text, amber keywords, red for the single top emphasis | `paper-warm-sample.png` |
 | `global:tech_calm@1.0.0` | `tech-calm.yaml` | Near-black surfaces, ice-white text, orange keywords, yellow for the single top emphasis | `channel-style-tech-calm.png` |
 
 Any profile declaring a matching `style.id`, `style.version`, and a complete `palette` is equally valid — nothing about a specific palette is hard-coded in the validator.

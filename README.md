@@ -2,9 +2,9 @@
 
 用一份結構化 YAML，先固定資訊架構、版型、精確資料與視覺規則，再生成一致的單張資訊圖表。
 
-![紙感教材風格黃金樣板](skills/yaml-infographic/assets/paper-warm-sample.png)
+![紙感立體貼紙風格黃金樣板](skills/yaml-infographic/assets/paper-warm-sample.png)
 
-內建兩種風格 profile。上圖為預設的「紙感教材」（`paper_warm`），適合列印講義與明亮教室；下圖為「科技沉穩」（`tech_calm`，隨原始著作附帶），適合暗室螢幕與社群貼文。
+內建兩種風格 profile。上圖為預設的「紙感立體貼紙」（`paper_warm`）：厚實圓角貼紙浮起於暖紙底，適合列印講義與明亮教室；下圖為「科技沉穩」（`tech_calm`，隨原始著作附帶），適合暗室螢幕與社群貼文。
 
 ![科技沉穩風格黃金樣板](skills/yaml-infographic/assets/channel-style-tech-calm.png)
 

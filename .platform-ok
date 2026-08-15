@@ -1,0 +1,5 @@
+# 刻意保留平台專屬寫法的檔案，由 cross-device-agent-skills/tools/check-platform.py 讀取。
+# 列在這裡的檔案整份跳過檢查（含 BOM），加進來之前先確認是「設計如此」不是「還沒改」。
+
+# README 教外部使用者用 powershell.exe（5.1）跑這支安裝器，5.1 需要 BOM 才不會把中文當 ANSI 讀。
+tools/install.ps1

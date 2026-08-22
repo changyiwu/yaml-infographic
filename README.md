@@ -139,7 +139,7 @@ python .\tools\validate_repo.py
 
 | 項目 | 內容 |
 |---|---|
-| 原作者 | 三師爸 Sense Bar（[mathruffian-dot](https://github.com/mathruffian-dot)） |
+| 原作者 | 三師爸（[mathruffian-dot](https://github.com/mathruffian-dot)） |
 | 原始著作 | [mathruffian-dot/yaml-infographic](https://github.com/mathruffian-dot/yaml-infographic)，MIT |
 | 本 Repo | `changyiwu/yaml-infographic`，由 changyiwu 修改與維護 |
 

@@ -7,7 +7,7 @@
 
 用一份結構化 YAML 先固定資訊架構、版型、精確資料與視覺規則，再生成風格一致的單張資訊圖表的 Agent 技能專案。技能本體可安裝到 Codex、Claude、OpenCode、Antigravity 四種 Agent。
 
-本專案的程式與文件源自三師爸 Sense Bar 的 `mathruffian-dot/yaml-infographic`（MIT），現正改造成自己的版本：解開寫死的視覺風格、換上自有的黃金樣張與調色盤，並修掉上游的若干程式問題。已與上游脫離 fork 關係，是獨立 repo。
+本專案的程式與文件源自原作者三師爸的 `mathruffian-dot/yaml-infographic`（MIT），現正改造成自己的版本：解開寫死的視覺風格、換上自有的黃金樣張與調色盤，並修掉上游的若干程式問題。已與上游脫離 fork 關係，是獨立 repo。
 
 ## 關鍵時程
 

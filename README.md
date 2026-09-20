@@ -31,7 +31,7 @@
 ### Codex 一行安裝
 
 ```powershell
-python "$HOME\.codex\skills\.system\skill-installer\scripts\install-skill-from-github.py" `
+python (Join-Path $HOME '.codex/skills/.system/skill-installer/scripts/install-skill-from-github.py') `
   --repo changyiwu/yaml-infographic `
   --path skills/yaml-infographic
 ```

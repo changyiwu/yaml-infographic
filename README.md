@@ -42,22 +42,22 @@ python (Join-Path $HOME '.codex/skills/.system/skill-installer/scripts/install-s
 
 ```powershell
 git clone https://github.com/changyiwu/yaml-infographic.git
-Set-Location .\yaml-infographic
+Set-Location ./yaml-infographic
 ```
 
 再選擇要安裝的 Agent：
 
 ```powershell
-powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\tools\install.ps1 -Agent codex
-powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\tools\install.ps1 -Agent claude
-powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\tools\install.ps1 -Agent opencode
-powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\tools\install.ps1 -Agent antigravity
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File ./tools/install.ps1 -Agent codex
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File ./tools/install.ps1 -Agent claude
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File ./tools/install.ps1 -Agent opencode
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File ./tools/install.ps1 -Agent antigravity
 ```
 
 一次安裝到四個 Agent：
 
 ```powershell
-powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\tools\install.ps1 -Agent all
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File ./tools/install.ps1 -Agent all
 ```
 
 若目標已存在，可加上 `-Force`。安裝器會先把舊版本移到帶時間戳記的備份資料夾，不會直接刪除。
@@ -67,26 +67,26 @@ powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\tools\install.ps1 -Age
 安裝 Python 相依套件：
 
 ```powershell
-python -m pip install -r .\requirements.txt
+python -m pip install -r ./requirements.txt
 ```
 
 複製 YAML 樣板：
 
 ```powershell
-Copy-Item .\skills\yaml-infographic\assets\infographic-spec-template.yaml .\spec.yaml
+Copy-Item ./skills/yaml-infographic/assets/infographic-spec-template.yaml ./spec.yaml
 ```
 
 依題目修改 `spec.yaml` 後，先驗證再編譯提示詞（以下為在本 Repo 內操作；**安裝後**改用技能目錄的路徑，見 [SKILL.md](skills/yaml-infographic/SKILL.md)）：
 
 ```powershell
-python .\skills\yaml-infographic\scripts\validate_spec.py --spec .\spec.yaml
-python .\skills\yaml-infographic\scripts\compile_prompt.py --spec .\spec.yaml
+python ./skills/yaml-infographic/scripts/validate_spec.py --spec ./spec.yaml
+python ./skills/yaml-infographic/scripts/compile_prompt.py --spec ./spec.yaml
 ```
 
 接著把產生的 prompt record 交給 Codex／ChatGPT 的圖片生成功能。完成圖片與必要的 SVG 疊加後執行：
 
 ```powershell
-python .\skills\yaml-infographic\scripts\verify_output.py --spec .\spec.yaml --project-root .
+python ./skills/yaml-infographic/scripts/verify_output.py --spec ./spec.yaml --project-root .
 ```
 
 > 這個 Repo 的 Python 工具負責規格驗證、提示詞編譯與輸出驗收，不會自行呼叫圖片 API。正式生圖仍需要支援圖片生成的 AI 工具或訂閱功能。
@@ -128,7 +128,7 @@ tools/validate_repo.py     Repo 完整性驗證
 ## 本機驗證
 
 ```powershell
-python .\tools\validate_repo.py
+python ./tools/validate_repo.py
 ```
 
 測試不會呼叫任何圖片 API，也不需要 API Key。

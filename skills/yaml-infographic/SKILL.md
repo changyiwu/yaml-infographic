@@ -46,13 +46,13 @@ description: 用一份結構化的 YAML 資訊架構搭配版本化的全域視�
 5. 生成前先驗證：
 
    ```powershell
-   python <SKILL_DIR>\scripts\validate_spec.py --spec .\spec.yaml
+   python <SKILL_DIR>/scripts/validate_spec.py --spec ./spec.yaml
    ```
 
 6. 編譯並存下圖片提示詞：
 
    ```powershell
-   python <SKILL_DIR>\scripts\compile_prompt.py --spec .\spec.yaml
+   python <SKILL_DIR>/scripts/compile_prompt.py --spec ./spec.yaml
    ```
 
 7. 用內建生圖能力產生視覺。`plate` 模式要先生成**無字底圖**，之後再疊上精確文字、圖表或公式。
@@ -60,7 +60,7 @@ description: 用一份結構化的 YAML 資訊架構搭配版本化的全域視�
 9. 驗收宣告的產出：
 
    ```powershell
-   python <SKILL_DIR>\scripts\verify_output.py --spec .\spec.yaml --project-root .
+   python <SKILL_DIR>/scripts/verify_output.py --spec ./spec.yaml --project-root .
    ```
 
 10. 回報 YAML、提示詞紀錄、最終圖片、來源底圖或疊加層、模式、尺寸，以及風格 profile 版本。

@@ -8,6 +8,6 @@
 驗證範例：
 
 ```powershell
-python .\skills\yaml-infographic\scripts\validate_spec.py --spec .\examples\process-baked\spec.yaml
-python .\skills\yaml-infographic\scripts\validate_spec.py --spec .\examples\comparison-plate\spec.yaml
+python ./skills/yaml-infographic/scripts/validate_spec.py --spec ./examples/process-baked/spec.yaml
+python ./skills/yaml-infographic/scripts/validate_spec.py --spec ./examples/comparison-plate/spec.yaml
 ```
